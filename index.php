@@ -2,6 +2,7 @@
 session_start();
 include("./db.php");
 include("./fetchData.php");
+include("./delete.php");
 if (isset($_POST["add"])) {
     if (!empty($_POST["taskinp"])) {
         $_SESSION["success"] = "Task Added sucessfully !";
@@ -9,12 +10,8 @@ if (isset($_POST["add"])) {
         $_SESSION["error"] = "Task not added due to some issue";
     }
 }
-
-
 // fetchAllData from fetchData file in a variable 
 $fetchtasks = getAllTasks($conn);
-//Test if working or not
-// print_r($fetchtasks);  --- done working
 ?>
 
 <!DOCTYPE html>
@@ -27,9 +24,7 @@ $fetchtasks = getAllTasks($conn);
 </head>
 
 <body>
-    <!--Step 1: Basic structure of Todo List-->
     <div class="container">
-        <!--Step 2: Create input place and button-->
         <div id="newtask">
             <?php include('alert.php') ?>
             <h3>Todo List Example</h3>
@@ -38,7 +33,6 @@ $fetchtasks = getAllTasks($conn);
                 <button id="add" type="submit" name="add">Add</button>
             </form>
         </div>
-        <!--Step 3: Tasks-->
         <div id="tasks">
             <?php
             if (!empty($fetchtasks)) {
@@ -49,12 +43,11 @@ $fetchtasks = getAllTasks($conn);
                             <?php echo $t[1] ?>
                         </span>
                         <div class="btn">
-                            <button class="delete">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                            <button class="edit">
-                                <i class="fas fa-edit"></i>
-                            </button>
+                            <!-- delete_id stores the task's ID inside the button. -->
+                            <a href="./index.php?delete_id=<?php echo $t[0] ?>" style="text-decoration: none;"><button class="delete">
+                                    <i class=" fa-solid fa-trash"></i>
+                                </button>
+                            </a>
                         </div>
                     </div>
             <?php }
