@@ -101,3 +101,8 @@ This is a simple TODO list application built using PHP, JavaScript, and MySQL. T
 
 - [Font Awesome](https://fontawesome.com/) for the icons.
 - [XAMPP](https://www.apachefriends.org/index.html) for the local server environment.
+
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
